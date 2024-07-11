@@ -32,15 +32,15 @@ import logo from '../assets/img/logo.svg'
   document.addEventListener('astro:page-load', () => {
     // variables
     const mainNav = document.querySelector('#main-navigation')
-    const mainMenu = mainNav.querySelector('ul')
+    const mainMenu = mainNav?.querySelector('ul')
     const dropdownMenus = [...document.querySelectorAll('.has-dropdown button')]
 
     // functions
     const setActiveMenuItem = () => {
-      const mobileDesktopMenus = mainNav.querySelectorAll('nav > ul')
+      const mobileDesktopMenus = mainNav?.querySelectorAll('nav > ul')
       const currenPathname = window.location.pathname
 
-      mobileDesktopMenus.forEach((menu) => {
+      mobileDesktopMenus?.forEach((menu) => {
         const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
 
         menuItems.forEach((menuItem) => {
@@ -56,163 +56,163 @@ import logo from '../assets/img/logo.svg'
     }
 
     const checkMenuSize = () => {
-      const mainNavWidth = mainNav.getBoundingClientRect().width
-      const desktopMenuWidth = document.querySelector('.desktop-menu').getBoundingClientRect().width
-      const logoWidthBuffer = 300
-      const totalMenuWidth = Math.round(desktopMenuWidth) + logoWidthBuffer
-
-      if (totalMenuWidth >= mainNavWidth) {
-        mainNav.classList.remove('is-desktop')
-        mainNav.classList.add('is-mobile')
-      } else if (totalMenuWidth <= mainNavWidth) {
-        mainNav.classList.add('is-desktop')
-        mainNav.classList.remove('is-mobile')
-      }
+      // const mainNavWidth = mainNav?.getBoundingClientRect().width
+      // const desktopMenuWidth = document.querySelector('.desktop-menu')?.getBoundingClientRect().width
+      // const logoWidthBuffer = 300
+      // const totalMenuWidth = Math.round(desktopMenuWidth) + logoWidthBuffer
+      //
+      // if (totalMenuWidth >= mainNavWidth) {
+      //   mainNav?.classList.remove('is-desktop')
+      //   mainNav?.classList.add('is-mobile')
+      // } else if (totalMenuWidth <= mainNavWidth) {
+      //   mainNav?.classList.add('is-desktop')
+      //   mainNav?.classList.remove('is-mobile')
+      // }
     }
 
-    const isOutOfViewport = (element) => {
-      const elementBounds = element.getBoundingClientRect()
-      return elementBounds.right > (window.innerWidth || document.documentElement.clientWidth)
-    }
-
-    const openDropdownMenu = (dropdownMenu) => {
-      const dropdownList = dropdownMenu.parentNode.querySelector('ul')
-
-      dropdownMenu.classList.add('show')
-      dropdownMenu.setAttribute('aria-expanded', 'true')
-
-      if (isOutOfViewport(dropdownList)) {
-        dropdownList.style.left = 'auto'
-      }
-    }
-
-    const closeDropdownMenu = (dropdownMenu) => {
-      dropdownMenu.classList.remove('show')
-      dropdownMenu.setAttribute('aria-expanded', 'false')
-    }
-
-    const closeAllDropdownMenus = () => {
-      for (let i = 0; i < dropdownMenus.length; i++) {
-        closeDropdownMenu(dropdownMenus[i])
-      }
-    }
-
-    const toggleDropdownMenu = (event) => {
-      if (event.target.getAttribute('aria-expanded') === 'false') {
-        closeAllDropdownMenus()
-        openDropdownMenu(event.target)
-      } else {
-        closeDropdownMenu(event.target)
-      }
-    }
+    // const isOutOfViewport = (element) => {
+    //   const elementBounds = element.getBoundingClientRect()
+    //   return elementBounds.right > (window.innerWidth || document.documentElement.clientWidth)
+    // }
+    //
+    // const openDropdownMenu = (dropdownMenu) => {
+    //   const dropdownList = dropdownMenu.parentNode.querySelector('ul')
+    //
+    //   dropdownMenu.classList.add('show')
+    //   dropdownMenu.setAttribute('aria-expanded', 'true')
+    //
+    //   if (isOutOfViewport(dropdownList)) {
+    //     dropdownList.style.left = 'auto'
+    //   }
+    // }
+    //
+    // const closeDropdownMenu = (dropdownMenu) => {
+    //   dropdownMenu.classList.remove('show')
+    //   dropdownMenu.setAttribute('aria-expanded', 'false')
+    // }
+    //
+    // const closeAllDropdownMenus = () => {
+    //   for (let i = 0; i < dropdownMenus.length; i++) {
+    //     closeDropdownMenu(dropdownMenus[i])
+    //   }
+    // }
+    //
+    // const toggleDropdownMenu = (event?) => {
+    //   if (event.target.getAttribute('aria-expanded') === 'false') {
+    //     closeAllDropdownMenus()
+    //     openDropdownMenu(event.target)
+    //   } else {
+    //     closeDropdownMenu(event.target)
+    //   }
+    // }
 
     // execution
-    mainMenu &&
-      mainMenu.addEventListener('keydown', (event) => {
-        const element = event.target as Element
-        const currentMenuItem = element.closest('li')
-        const menuItems = [...mainMenu.querySelectorAll('.menu-item')]
-        const currentDropdownMenu = element.closest('.has-dropdown button')
-        const currentDropdownMenuItem = element.closest('.has-dropdown li')
-        const currentIndex = menuItems.findIndex((item) => item === currentMenuItem)
+    // mainMenu &&
+    //   mainMenu.addEventListener('keydown', (event) => {
+    //     const element = event.target as Element
+    //     const currentMenuItem = element.closest('li')
+    //     const menuItems = [...mainMenu.querySelectorAll('.menu-item')]
+    //     const currentDropdownMenu = element.closest('.has-dropdown button')
+    //     const currentDropdownMenuItem = element.closest('.has-dropdown li')
+    //     const currentIndex = menuItems.findIndex((item) => item === currentMenuItem)
+    //
+    //     const key = event.key
+    //     let targetItem
+    //
+    //     if (key === 'ArrowRight') {
+    //       if (menuItems.indexOf(currentMenuItem) === menuItems.length - 1) {
+    //         targetItem = menuItems[0]
+    //       } else {
+    //         targetItem = menuItems[currentIndex + 1]
+    //       }
+    //     }
+    //
+    //     if (key === 'ArrowLeft') {
+    //       if (menuItems.indexOf(currentMenuItem) === 0) {
+    //         targetItem = menuItems[menuItems.length - 1]
+    //       } else {
+    //         targetItem = menuItems[currentIndex - 1]
+    //       }
+    //     }
+    //
+    //     if (key === 'Escape') {
+    //       targetItem = menuItems[0]
+    //     }
+    //
+    //     if (currentDropdownMenu) {
+    //       const firstDropdownItem = currentDropdownMenu.nextElementSibling.querySelector('li')
+    //
+    //       if (key === 'ArrowDown') {
+    //         event.preventDefault()
+    //         openDropdownMenu(currentDropdownMenu)
+    //         targetItem = firstDropdownItem
+    //       }
+    //
+    //       if (key === 'Escape') {
+    //         closeDropdownMenu(currentDropdownMenu)
+    //       }
+    //     }
+    //
+    //     if (currentDropdownMenuItem) {
+    //       const currentDropdownList = currentDropdownMenuItem.parentNode
+    //       const dropdownMenuItems = [...currentDropdownList.querySelectorAll('li')]
+    //       const currentIndex = dropdownMenuItems.findIndex((item) => item === currentDropdownMenuItem)
+    //
+    //       if (key === 'ArrowDown') {
+    //         event.preventDefault()
+    //
+    //         if (dropdownMenuItems.indexOf(currentDropdownMenuItem as HTMLLIElement) === dropdownMenuItems.length - 1) {
+    //           targetItem = dropdownMenuItems[0]
+    //         } else {
+    //           targetItem = dropdownMenuItems[currentIndex + 1]
+    //         }
+    //       }
+    //
+    //       if (key === 'ArrowUp') {
+    //         event.preventDefault()
+    //
+    //         if (dropdownMenuItems.indexOf(currentDropdownMenuItem as HTMLLIElement) === 0) {
+    //           targetItem = dropdownMenuItems[dropdownMenuItems.length - 1]
+    //         } else {
+    //           targetItem = dropdownMenuItems[currentIndex - 1]
+    //         }
+    //       }
+    //
+    //       if (key === 'Escape') {
+    //         const currentDropdownMenu = (currentDropdownList as Element).previousElementSibling
+    //         targetItem = currentDropdownMenu.parentNode
+    //         closeAllDropdownMenus()
+    //       }
+    //
+    //       if (key === 'Tab') {
+    //         const currentDropdownMenu = (currentDropdownList as Element).previousElementSibling
+    //
+    //         if (dropdownMenuItems.indexOf(currentDropdownMenuItem as HTMLLIElement) === dropdownMenuItems.length - 1) {
+    //           closeDropdownMenu(currentDropdownMenu)
+    //         }
+    //       }
+    //     }
+    //
+    //     if (targetItem) {
+    //       targetItem.querySelector('a, button, input').focus()
+    //     }
+    //   })
 
-        const key = event.key
-        let targetItem
+    // dropdownMenus &&
+    //   dropdownMenus.forEach((dropdownMenu) => {
+    //     dropdownMenu.addEventListener('click', toggleDropdownMenu)
+    //   })
 
-        if (key === 'ArrowRight') {
-          if (menuItems.indexOf(currentMenuItem) === menuItems.length - 1) {
-            targetItem = menuItems[0]
-          } else {
-            targetItem = menuItems[currentIndex + 1]
-          }
-        }
+    //setActiveMenuItem()
+    //checkMenuSize()
 
-        if (key === 'ArrowLeft') {
-          if (menuItems.indexOf(currentMenuItem) === 0) {
-            targetItem = menuItems[menuItems.length - 1]
-          } else {
-            targetItem = menuItems[currentIndex - 1]
-          }
-        }
-
-        if (key === 'Escape') {
-          targetItem = menuItems[0]
-        }
-
-        if (currentDropdownMenu) {
-          const firstDropdownItem = currentDropdownMenu.nextElementSibling.querySelector('li')
-
-          if (key === 'ArrowDown') {
-            event.preventDefault()
-            openDropdownMenu(currentDropdownMenu)
-            targetItem = firstDropdownItem
-          }
-
-          if (key === 'Escape') {
-            closeDropdownMenu(currentDropdownMenu)
-          }
-        }
-
-        if (currentDropdownMenuItem) {
-          const currentDropdownList = currentDropdownMenuItem.parentNode
-          const dropdownMenuItems = [...currentDropdownList.querySelectorAll('li')]
-          const currentIndex = dropdownMenuItems.findIndex((item) => item === currentDropdownMenuItem)
-
-          if (key === 'ArrowDown') {
-            event.preventDefault()
-
-            if (dropdownMenuItems.indexOf(currentDropdownMenuItem as HTMLLIElement) === dropdownMenuItems.length - 1) {
-              targetItem = dropdownMenuItems[0]
-            } else {
-              targetItem = dropdownMenuItems[currentIndex + 1]
-            }
-          }
-
-          if (key === 'ArrowUp') {
-            event.preventDefault()
-
-            if (dropdownMenuItems.indexOf(currentDropdownMenuItem as HTMLLIElement) === 0) {
-              targetItem = dropdownMenuItems[dropdownMenuItems.length - 1]
-            } else {
-              targetItem = dropdownMenuItems[currentIndex - 1]
-            }
-          }
-
-          if (key === 'Escape') {
-            const currentDropdownMenu = (currentDropdownList as Element).previousElementSibling
-            targetItem = currentDropdownMenu.parentNode
-            closeAllDropdownMenus()
-          }
-
-          if (key === 'Tab') {
-            const currentDropdownMenu = (currentDropdownList as Element).previousElementSibling
-
-            if (dropdownMenuItems.indexOf(currentDropdownMenuItem as HTMLLIElement) === dropdownMenuItems.length - 1) {
-              closeDropdownMenu(currentDropdownMenu)
-            }
-          }
-        }
-
-        if (targetItem) {
-          targetItem.querySelector('a, button, input').focus()
-        }
-      })
-
-    dropdownMenus &&
-      dropdownMenus.forEach((dropdownMenu) => {
-        dropdownMenu.addEventListener('click', toggleDropdownMenu)
-      })
-
-    setActiveMenuItem()
-    checkMenuSize()
-
-    window.addEventListener('resize', checkMenuSize)
-    window.addEventListener('click', (event) => {
-      const element = event.target as Element
-      if (!element.hasAttribute('aria-haspopup') && !element.classList.contains('submenu-item')) {
-        closeAllDropdownMenus()
-      }
-    })
+    // window.addEventListener('resize', checkMenuSize)
+    // window.addEventListener('click', (event) => {
+    //   const element = event.target as Element
+    //   if (!element.hasAttribute('aria-haspopup') && !element.classList.contains('submenu-item')) {
+    //     closeAllDropdownMenus()
+    //   }
+    // })
   })
 </script>
 
