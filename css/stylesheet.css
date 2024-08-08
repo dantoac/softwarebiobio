@@ -910,6 +910,10 @@ video {
   --tw-bg-opacity: 0;
 }
 
+.bg-opacity-20 {
+  --tw-bg-opacity: 0.2;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -1567,6 +1571,14 @@ video {
 
   .dark\:bg-opacity-10 {
     --tw-bg-opacity: 0.1;
+  }
+
+  .dark\:bg-opacity-80 {
+    --tw-bg-opacity: 0.8;
+  }
+
+  .dark\:bg-opacity-60 {
+    --tw-bg-opacity: 0.6;
   }
 
   .dark\:text-white {
