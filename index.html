@@ -4,140 +4,148 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Software BioBio - Consultoría y Desarrollo de Software</title>
+  <meta name="description"
+        content="Software BioBio ofrece servicios de consultoría y desarrollo de software, aplicaciones web y móviles en la región de Biobío, Chile.">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/stylesheet.css">
   <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
 
       body {
-          font-family: 'Roboto', sans-serif;
+          font-family: 'Roboto', 'Exo 2', sans-serif;
       }
 
       .bg-gradient-dark {
-          background: linear-gradient(to right, #3b3b98, #2c2c54);
+          background: linear-gradient(to left, #3b3bc8, #2c2c64);
       }
 
       .bg-intro {
           background: url('images/fondo7.webp.jpeg') no-repeat center center;
           background-size: cover;
           background-blend-mode: multiply;
-          background-color: rgba(0, 0, 200, 0.66);
+          background-color: rgba(0, 50, 200, 0.8);
       }
   </style>
-  <script data-goatcounter="https://softwarebiobio.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+  <script data-goatcounter="https://softwarebiobio.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body class="bg-gray-100 text-gray-900">
-<header class="bg-gradient-dark text-white fixed w-full z-50">
+<header class="bg-slate-900 backdrop-blur bg-opacity-60 text-white fixed w-full z-50">
   <nav class="container mx-auto p-4 flex justify-between items-center" role="navigation" aria-label="Main">
     <a href="#intro" class="text-2xl font-bold" aria-label="Inicio">Software BioBio</a>
     <ul class="flex space-x-4" role="menubar">
-      <li role="none"><a href="#intro" class="hover:text-gray-300" role="menuitem">Inicio</a></li>
-      <li role="none"><a href="#services" class="hover:text-gray-300" role="menuitem">Servicios</a></li>
-      <li role="none"><a href="#portfolio" class="hover:text-gray-300" role="menuitem">Portafolio</a></li>
-      <li role="none"><a href="#testimonials" class="hover:text-gray-300" role="menuitem">Testimonios</a></li>
-      <li role="none"><a href="#contact" class="hover:text-gray-300" role="menuitem">Contacto</a></li>
+      <li role="none"><a href="#intro" class="p-2 hover:bg-[#119] rounded-lg hover:text-slate-100" role="menuitem">Inicio</a></li>
+      <li role="none"><a href="#services" class="p-2 hover:bg-[#119] rounded-lg hover:text-slate-100" role="menuitem">Servicios</a></li>
+      <li role="none"><a href="#portfolio" class="p-2 hover:bg-[#119] rounded-lg hover:text-slate-100" role="menuitem">Portafolio</a></li>
+      <li role="none"><a href="#contact" class="p-2 hover:bg-[#119] rounded-lg hover:text-slate-100" role="menuitem">Contacto</a></li>
     </ul>
   </nav>
 </header>
 
 <main>
-  <section id="intro" class="bg-intro text-white h-screen flex items-center justify-center text-center">
-    <div class="bg-black bg-opacity-70 p-8 rounded-3xl border-2 border-gray-800">
-      <h1 class="text-6xl font-bold animate-pulse">Software Biobío</h1>
-      <p class="mt-4 text-2xl">Consultoría, Desarrollo de Software, Aplicaciones Web y Móviles</p>
-      <a href="#contact"
-         class="mt-8 inline-block bg-yellow-500 text-black py-3 px-6 rounded-lg hover:bg-yellow-600 transition transform hover:scale-105">Contáctanos</a>
+<section id="intro" class="bg-intro text-white h-screen flex items-center justify-center text-center">
+    <div class="bg-black bg-opacity-70 p-8 sm:p-12 xl:p-16 rounded-3xl border-2 border-gray-800 max-w-4xl mx-auto">
+        <h1 class="text-6xl font-extrabold animate-pulse">Software Biobío</h1>
+        <p class="mt-6 text-4xl font-light">Innovación, Desarrollo y Continuidad</p>
+        <a href="#contact" class="mt-10 inline-block bg-yellow-500 text-black py-3 px-8 rounded-lg hover:bg-yellow-600 transition transform hover:scale-105 shadow-lg">Contáctanos</a>
     </div>
-  </section>
-
+</section>
   <section id="services" class="py-20 bg-gray-900 text-white">
-    <h2 class="text-4xl font-bold text-center mb-12">Servicios</h2>
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <h2 class="text-4xl font-bold text-center mb-12">Nuestros Servicios</h2>
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div
         class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
         <i class="fas fa-laptop-code text-4xl text-blue-400 mb-4" aria-hidden="true"></i>
         <h3 class="text-2xl font-semibold">Consultoría y Desarrollo de Software a Medida</h3>
-        <p class="mt-2">Brindamos asesoramiento especializado y desarrollamos soluciones personalizadas.</p>
+        <p class="mt-2">Ofrecemos asesoramiento especializado y desarrollo de soluciones personalizadas que se adaptan a
+          las necesidades específicas de cada cliente.</p>
       </div>
       <div
         class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
         <i class="fas fa-cogs text-4xl text-green-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Sistemas Orientados a Eventos</h3>
-        <p class="mt-2">Desarrollamos sistemas e interfaces de comunicación para tus dispositivos.</p>
+        <h3 class="text-2xl font-semibold">Gestión Completa del Proceso de Desarrollo</h3>
+        <p class="mt-2">Gestionamos todo el proceso de desarrollo de software, desde la toma de requerimientos
+          personalizados hasta el diseño, desarrollo, pruebas y despliegue de las aplicaciones.</p>
       </div>
       <div
         class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
         <i class="fas fa-globe text-4xl text-purple-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Plataformas Web y Backoffices</h3>
-        <p class="mt-2">Desarrollamos sistemas, plataformas web y aplicaciónes móviles en base a su requerimiento.</p>
+        <h3 class="text-2xl font-semibold">Desarrollo de Sistemas de Backoffice y Plataformas Web</h3>
+        <p class="mt-2">Creamos sistemas de backoffice y plataformas web robustas y escalables, optimizadas para el
+          rendimiento y la usabilidad en diferentes dispositivos.</p>
       </div>
       <div
         class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
         <i class="fas fa-server text-4xl text-red-400 mb-4" aria-hidden="true"></i>
         <h3 class="text-2xl font-semibold">Desarrollo de API y Servicios</h3>
-        <p class="mt-2">Creamos APIs robustas y servicios eficientes para tus aplicaciones.</p>
+        <p class="mt-2">Diseñamos y desarrollamos APIs eficientes y servicios backend que permiten la integración y la
+          funcionalidad avanzada de tus aplicaciones.</p>
+      </div>
+      <div
+        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
+        <i class="fas fa-cloud text-4xl text-indigo-400 mb-4" aria-hidden="true"></i>
+        <h3 class="text-2xl font-semibold">Alojamiento y Mantenimiento de Aplicaciones</h3>
+        <p class="mt-2">Ofrecemos servicios de alojamiento y mantenimiento continuo de tus aplicaciones para asegurar su
+          disponibilidad, seguridad y rendimiento óptimo.</p>
       </div>
     </div>
   </section>
 
   <section id="portfolio" class="py-20 bg-gray-100">
-    <h2 class="text-4xl font-bold text-center mb-12">Portafolio</h2>
+    <h2 class="text-4xl font-bold text-center mb-12">Experiencia</h2>
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Sistema de gestión de recursos humanos</h3>
-        <p class="mt-2">Implementación de un sistema integral para la gestión eficiente de los recursos humanos.</p>
+        <h3 class="text-2xl font-semibold">Migración a Arquitectura Cloud</h3>
+        <p class="mt-2">Hemos liderado exitosamente la migración de arquitecturas monolíticas a soluciones basadas en la
+          nube (AWS), implementando nuevas funcionalidades y mejorando la integración para grandes cadenas de
+          retail.</p>
       </div>
       <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Plataforma de comercio electrónico</h3>
-        <p class="mt-2">Desarrollo de una plataforma robusta para la venta online de productos.</p>
+        <h3 class="text-2xl font-semibold">Desarrollo de Sistemas de Backoffice</h3>
+        <p class="mt-2">Desarrollamos sistemas de backoffice personalizados para la gestión eficiente de productos y
+          operaciones en el sector retail, optimizando los procesos y mejorando la productividad.</p>
       </div>
       <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Aplicación móvil de seguimiento de salud</h3>
-        <p class="mt-2">Creación de una app para monitorear la salud y bienestar de los usuarios.</p>
+        <h3 class="text-2xl font-semibold">Microservicios y API</h3>
+        <p class="mt-2">Transformamos arquitecturas monolíticas en microservicios escalables, desarrollando APIs
+          robustas y eficientes que mejoran la capacidad de respuesta y la flexibilidad del sistema.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
+        <h3 class="text-2xl font-semibold">Sistemas de Telemetría y Eventos</h3>
+        <p class="mt-2">Creamos sistemas de telemetría de baja latencia para la industria forestal y minera, mejorando
+          la seguridad y productividad mediante soluciones tecnológicas avanzadas.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
+        <h3 class="text-2xl font-semibold">Innovación en Tecnología Universitaria</h3>
+        <p class="mt-2">Colaboramos con universidades en el desarrollo de proyectos tecnológicos avanzados,
+          implementando sistemas de telemetría y eventos para dispositivos de última generación.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
+        <h3 class="text-2xl font-semibold">Soluciones para Micro y Pequeñas Empresas</h3>
+        <p class="mt-2">Ofrecemos soluciones de software a medida para micro y pequeñas empresas, ayudándolas a
+          optimizar sus procesos y mejorar su eficiencia operativa.</p>
       </div>
     </div>
   </section>
 
-  <section id="testimonials" class="py-20 bg-gradient-dark text-white">
-    <h2 class="text-4xl font-bold text-center mb-12">Testimonios</h2>
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div
-        class="bg-purple-700 p-6 rounded-lg shadow-lg text-center hover:bg-purple-600 transition transform hover:scale-105">
-        <p class="italic">"Software BioBio transformó nuestra forma de trabajar con una solución a medida que ha
-          mejorado nuestra eficiencia y productividad."</p>
-        <h4 class="mt-4 font-semibold">Juan Pérez, Empresa X</h4>
-      </div>
-      <div
-        class="bg-purple-700 p-6 rounded-lg shadow-lg text-center hover:bg-purple-600 transition transform hover:scale-105">
-        <p class="italic">"Excelente servicio y atención al cliente. El equipo de Software BioBio realmente entiende
-          nuestras necesidades."</p>
-        <h4 class="mt-4 font-semibold">María Gómez, Empresa Y</h4>
-      </div>
-      <div
-        class="bg-purple-700 p-6 rounded-lg shadow-lg text-center hover:bg-purple-600 transition transform hover:scale-105">
-        <p class="italic">"Recomiendo altamente a Software BioBio por su profesionalismo y calidad en el desarrollo de
-          software."</p>
-        <h4 class="mt-4 font-semibold">Carlos Sánchez, Empresa Z</h4>
-      </div>
-    </div>
-  </section>
-
-  <section id="clients" class="py-20 bg-gray-100">
+  <section id="clients" class="py-20 bg-white text-gray-900">
     <h2 class="text-4xl font-bold text-center mb-12">Nuestros Clientes</h2>
     <div class="container mx-auto flex flex-wrap justify-center items-center gap-8">
-      <img src="images/logo_municonce.png" alt="Municipalidad de Concepción" class="h-16">
-      <img src="logo2.png" alt="Cliente 2" class="h-16">
-      <img src="logo3.png" alt="Cliente 3" class="h-16">
-      <img src="logo4.png" alt=“Cliente 4” class="h-16">
+      <img src="images/logos/logo_uber.png" alt="Cliente 3" class="h-16">
+      <img src="images/logos/logo_municonce.png" alt="Cliente 4" class="h-16">
+      <img src="images/logos/logo_copec.png" alt="Cliente 1" class="h-16">
+      <img src="images/logos/logo_udec.png" alt="Cliente 2" class="h-16">
+      <img src="images/logos/logo_woodtechms.webp" alt="Cliente 5" class="h-16">
     </div>
   </section>
+
+
   <section id="contact" class="py-20 bg-gradient-dark text-white">
     <h2 class="text-4xl font-bold text-center mb-12">Contacto</h2>
     <div class="container mx-auto">
       <p class="text-center mb-8">Si estás interesado en nuestros servicios o tienes alguna pregunta, no dudes en
         contactarnos.</p>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+      <form action="https://formspree.io/f/mdknebkz" method="POST"
             class="max-w-lg mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
         <div class="mb-4">
           <label for="name" class="block text-lg font-semibold mb-2">Nombre:</label>
@@ -148,6 +156,12 @@
         <div class="mb-4">
           <label for="email" class="block text-lg font-semibold mb-2">Correo electrónico:</label>
           <input type="email" id="email" name="email"
+                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                 required aria-required="true">
+        </div>
+        <div class="mb-4">
+          <label for="phone" class="block text-lg font-semibold mb-2">Teléfono:</label>
+          <input type="tel" id="phone" name="phone"
                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                  required aria-required="true">
         </div>
@@ -166,13 +180,14 @@
       <p class="text-center">Correo electrónico: <a href="mailto:contacto@softwarebiobio.com"
                                                     class="text-yellow-300 hover:underline">contacto@softwarebiobio.com</a>
       </p>
-<!--      <p class="text-center">Teléfono: <a href="tel:+56912345678" class="text-yellow-300 hover:underline">+56 9 1234-->
-<!--        5678</a></p>-->
     </div>
   </section>
+
+
 </main>
 
-<footer class="bg-gradient-dark text-white py-4 text-center"> Concepción. Región del Biobío. Chile.
+<footer class="bg-gradient-dark text-white py-4 text-center">
+  <p>Concepción. Región del Biobío. Chile.</p>
   <p>&copy; 2024 Software BioBio. Todos los derechos reservados.</p>
 </footer>
 </body>
