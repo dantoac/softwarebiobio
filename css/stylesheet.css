@@ -1593,6 +1593,10 @@ video {
     --tw-bg-opacity: 0.6;
   }
 
+  .dark\:bg-opacity-70 {
+    --tw-bg-opacity: 0.7;
+  }
+
   .dark\:text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
