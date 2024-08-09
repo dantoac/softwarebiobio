@@ -51,7 +51,9 @@
 </header>
 
 <main>
-  <section id="intro" class="dark:bg-black dark:bg-opacity-50 bg-intro text-white h-screen flex items-center justify-center text-center" tabindex="0">
+  <section id="intro"
+           class="dark:bg-black dark:bg-opacity-50 bg-intro text-white h-screen flex items-center justify-center text-center"
+           tabindex="0">
     <div class="shadow-2xl shadow-white bg-white dark:bg-black bg-opacity-60 dark:bg-opacity-60 p-8 backdrop-blur sm:p-12 xl:p-16 rounded-3xl border-2
     border-gray-800 max-w-4xl mx-auto text-slate-900 dark:text-white dark:bg-opacity-10">
       <h1 class="text-6xl font-extrabold">Software Biobío</h1>
@@ -163,7 +165,7 @@
     <div class="container mx-auto">
       <p class="text-center mb-8">Si estás interesado en nuestros servicios o tienes alguna pregunta, no dudes en
         contactarnos.</p>
-      <form action="https://formspree.io/f/mdknebkz" method="POST"
+      <form id="contact-form" method="POST"
             class="max-w-lg mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
         <div class="mb-4">
           <label for="name" class="block text-lg font-semibold mb-2">Nombre:</label>
@@ -205,6 +207,36 @@
                                                     class="text-yellow-300 hover:underline">contacto@softwarebiobio.com</a>
       </p>
     </div>
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault()
+
+        const name = document.getElementById('name').value
+        const phone = document.getElementById('phone').value
+        const email = document.getElementById('email').value
+        const message = document.getElementById('message').value
+
+        try {
+          const response = await fetch('https://rzbvcmjozdvgmcvjkkum.supabase.co/functions/v1/contact_form', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Origin': window.location.origin
+            },
+            body: JSON.stringify({ name, phone, email, message })
+          })
+
+          if (response.ok) {
+            alert('Mensaje enviado con éxito!')
+          } else {
+            alert('Hubo un error al enviar tu mensaje.')
+          }
+        } catch (error) {
+          console.error('Error al enviar el mensaje: ', error)
+          alert('Hubo un error al enviar tu mensaje.')
+        }
+      })
+    </script>
   </section>
 </main>
 
