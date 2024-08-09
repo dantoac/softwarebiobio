@@ -227,9 +227,10 @@
           })
 
           if (response.ok) {
-            alert('Mensaje enviado con éxito!')
+            document.getElementById('contact-form').reset()
+            alert('Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.')
           } else {
-            alert('Hubo un error al enviar tu mensaje.')
+            alert('Hubo un error en el servidor al enviar su mensaje. Envíenos un email a contaco@softwarebiobio.com si este error persise')
           }
         } catch (error) {
           console.error('Error al enviar el mensaje: ', error)
