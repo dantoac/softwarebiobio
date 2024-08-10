@@ -33,6 +33,7 @@
   <script data-goatcounter="https://softwarebiobio.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body class="bg-gray-100 text-gray-900">
+
 <header class="bg-black backdrop-blur bg-opacity-60 text-white fixed w-full z-50">
   <nav class="container mx-auto p-4 flex justify-between items-center" role="navigation" aria-label="Main">
     <a href="#intro" class="text-2xl font-bold" aria-label="Inicio">Software BioBio</a>
@@ -49,6 +50,21 @@
     </ul>
   </nav>
 </header>
+
+<div id="modal"
+     class="hidden transition ease-in-out bg-black/30 backdrop-blur-lg fixed w-full z-50 flex justify-center h-screen cursor-pointer items-center">
+  <div id="modal-content" class="flex flex-col bg-white rounded-lg drop-shadow shadow-xl">
+    <div id="modal-message"
+         class="hover:animate-pulse p-5 justify-center items-center text-black max-w-3xl">aoe
+    </div>
+    <div class="flex justify-end items-end p-2 text-xs">
+      <div
+        class="bg-gray-200 rounded-lg p-2 transition duration-300 hover:scale-95 hover:translate-x-1 hover:translate-y-1">
+        <button><i class="fas fa-times-circle"></i> Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <main>
   <section id="intro"
@@ -225,22 +241,34 @@
             },
             body: JSON.stringify({ name, phone, email, message })
           })
+          let msg
 
           if (response.ok) {
             document.getElementById('contact-form').reset()
-            alert('Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.')
+            msg = 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
           } else {
-            alert('Hubo un error en el servidor al enviar su mensaje. Envíenos un email a contaco@softwarebiobio.com si este error persise')
+            msg = 'Hubo un error en el servidor al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
           }
+
+
         } catch (error) {
           console.error('Error al enviar el mensaje: ', error)
-          alert('Hubo un error al enviar tu mensaje.')
+          msg = 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
         }
+
+        document.getElementById('modal-message').textContent = msg
+        document.getElementById('modal').classList.toggle('hidden')
+
+      })
+
+      document.getElementById('modal').addEventListener('click', function(e) {
+        document.getElementById('modal').classList.toggle('hidden')
       })
     </script>
   </section>
-</main>
 
+
+</main>
 <footer class="bg-slate-900 text-white py-4 text-center">
   <p>Concepción. Región del Biobío. Chile.</p>
   <p>&copy; 2024 Software BioBio. Todos los derechos reservados.</p>
