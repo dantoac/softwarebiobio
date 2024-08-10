@@ -231,6 +231,7 @@
         const phone = document.getElementById('phone').value
         const email = document.getElementById('email').value
         const message = document.getElementById('message').value
+        let response_msg;
 
         try {
           const response = await fetch('https://rzbvcmjozdvgmcvjkkum.supabase.co/functions/v1/contact_form', {
@@ -241,22 +242,22 @@
             },
             body: JSON.stringify({ name, phone, email, message })
           })
-          let msg
+
 
           if (response.ok) {
             document.getElementById('contact-form').reset()
-            msg = 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
+            response_msg = 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
           } else {
-            msg = 'Hubo un error en el servidor al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
+            response_msg = 'Hubo un error en el servidor al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
           }
 
 
         } catch (error) {
           console.error('Error al enviar el mensaje: ', error)
-          msg = 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
+          response_msg = 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
         }
 
-        document.getElementById('modal-message').textContent = msg
+        document.getElementById('modal-message').textContent = response_msg
         document.getElementById('modal').classList.toggle('hidden')
 
       })
