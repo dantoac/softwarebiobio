@@ -75,7 +75,8 @@
       <h1 class="text-6xl font-extrabold">Software Biobío</h1>
       <p class="mt-6 text-4xl font-light">Soluciones Informáticas</p>
       <a href="#contact"
-         class="mt-10 inline-block bg-amber-500 dark:bg-amber-600 text-black dark:text-white py-3 px-8 rounded-lg transition ease-in-out hover:scale-95  shadow-xl duration-300">Contáctanos</a>
+         class="mt-10 inline-block bg-amber-500 dark:bg-amber-600 text-black dark:text-white py-3
+         px-8 rounded-lg transition ease-in-out hover:scale-95 shadow-xl hover:shadow-md duration-300">Contáctanos</a>
     </div>
   </section>
 
@@ -231,7 +232,7 @@
         const phone = document.getElementById('phone').value
         const email = document.getElementById('email').value
         const message = document.getElementById('message').value
-        let response_msg;
+        let response_msg
 
         try {
           const response = await fetch('https://rzbvcmjozdvgmcvjkkum.supabase.co/functions/v1/contact_form', {
