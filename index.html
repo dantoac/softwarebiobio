@@ -233,7 +233,7 @@
     <script>
       document.getElementById('contact-form').addEventListener('submit', async function(e) {
         e.preventDefault()
-        formData = FormData(e.target);
+        formData = new FormData(e.target);
 
         let response_msg
 
