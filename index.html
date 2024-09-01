@@ -232,13 +232,14 @@
     </div>
     <script>
       document.getElementById('contact-form').addEventListener('submit', async function(e) {
+
         e.preventDefault()
-        formData = new FormData(e.target);
+        formData = new FormData(e.target)
+        let msg_error = 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contacto@softwarebiobio.com como alternativa.'
+        let msg_success = 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
 
-        let response_msg
-
-        const sbtn = document.getElementById('submit-button');
-        sbtn.classList.toggle('disabled');
+        const sbtn = document.getElementById('submit-button')
+        sbtn.classList.toggle('disabled')
 
         try {
           const response = await fetch('/', {
@@ -250,20 +251,19 @@
 
           if (response.ok) {
             document.getElementById('contact-form').reset()
-            response_msg = 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
+            response_msg = msg_success
           } else {
-            response_msg = 'Hubo un error en el servidor al enviar su mensaje. Si este error persiste por favor envíenos un email a contacto@softwarebiobio.com'
+            response_msg = msg_error
           }
-
 
         } catch (error) {
           console.error('Error al enviar el mensaje: ', error)
-          response_msg = 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contaco@softwarebiobio.com si este error persiste.'
+          response_msg = msg_error
         }
 
         document.getElementById('modal-message').textContent = response_msg
         document.getElementById('modal').classList.toggle('hidden')
-        sbtn.classList.toggle('disabled');
+        sbtn.classList.toggle('disabled')
 
       })
 
