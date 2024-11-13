@@ -6,10 +6,11 @@
   <title>Software BioBio - Consultoría y Desarrollo de Software</title>
   <meta name="description"
         content="Software BioBio ofrece servicios de consultoría y desarrollo de software, aplicaciones web y móviles desde Concepción en la región de Biobío, Chile.">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/stylesheet.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
       body {
           font-family: 'Inter', sans-serif;
@@ -19,20 +20,91 @@
           font-family: 'Montserrat', sans-serif;
       }
 
+      @keyframes gradient {
+          0% {
+              background-position: 0% 50%;
+          }
+          50% {
+              background-position: 100% 50%;
+          }
+          100% {
+              background-position: 0% 50%;
+          }
+      }
+
+      .animated-gradient {
+          background: linear-gradient(-45deg, #3b82f6, #06b6d4, #2563eb, #1d4ed8);
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+      }
+
+      .custom-cursor {
+          width: 20px;
+          height: 20px;
+          border: 2px solid white;
+          border-radius: 50%;
+          position: fixed;
+          pointer-events: none;
+          z-index: 9999;
+          transition: transform 0.3s ease;
+      }
+
+      .custom-cursor.hover {
+          transform: scale(1.5);
+      }
+
+      .tilt-card {
+          transform-style: preserve-3d;
+          perspective: 1000px;
+      }
+
+      .tilt-card:hover {
+          transform: rotateX(5deg) rotateY(5deg);
+      }
+
+      .tilt-card-content {
+          transform: translateZ(20px);
+      }
+
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: white;
+          transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+          width: 100%;
+      }
+
       .bg-intro {
           background-image: url('images/fondo3.webp.jpeg');
           background-position: center;
           background-size: cover;
           background-blend-mode: multiply;
       }
-
   </style>
   <script data-goatcounter="https://softwarebiobio.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-50">
+<!-- Cursor personalizado -->
+<div class="custom-cursor"></div>
 
-<header
-  class="bg-slate-900 backdrop-blur bg-opacity-60 text-white fixed w-full z-50">
+<!-- Loader -->
+<div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-black">
+  <div class="relative w-24 h-24">
+    <div class="absolute inset-0 border-4 border-white/20 rounded-full"></div>
+    <div class="absolute inset-0 border-4 border-t-white rounded-full animate-spin"></div>
+  </div>
+</div>
+
+<!-- Header con navegación mejorada -->
+<header class="bg-slate-900 backdrop-blur bg-opacity-60 text-white fixed w-full z-50">
   <nav class="container mx-auto p-4 flex justify-between items-center" role="navigation" aria-label="Main">
     <a href="#intro" class="text-2xl font-bold" aria-label="Inicio">Software BioBio</a>
     <div class="md:hidden">
@@ -43,365 +115,816 @@
       </button>
     </div>
     <ul class="hidden md:flex space-x-4" role="menubar">
-      <li role="none"><a href="#intro" class="p-2 hover:bg-white rounded-lg hover:text-slate-800"
-                         role="menuitem">Inicio</a>
-      </li>
-      <li role="none"><a href="#services" class="p-2 hover:bg-white rounded-lg hover:text-slate-800" role="menuitem">Servicios</a>
-      </li>
-      <li role="none"><a href="#clients" class="p-2 hover:bg-white rounded-lg hover:text-slate-800" role="menuitem">Clientes</a>
-      </li>
-      <li role="none"><a href="#articles" class="p-2 hover:bg-white rounded-lg hover:text-slate-800" role="menuitem">Actualidad</a>
-      </li>
-      <li role="none"><a href="#experience" class="p-2 hover:bg-white rounded-lg hover:text-slate-800"
+      <li role="none"><a href="#intro" class="nav-link p-2 hover:bg-white rounded-lg hover:text-slate-800"
+                         role="menuitem">Inicio</a></li>
+      <li role="none"><a href="#services" class="nav-link p-2 hover:bg-white rounded-lg hover:text-slate-800"
+                         role="menuitem">Servicios</a></li>
+      <li role="none"><a href="#clients" class="nav-link p-2 hover:bg-white rounded-lg hover:text-slate-800"
+                         role="menuitem">Clientes</a></li>
+      <li role="none"><a href="#articles" class="nav-link p-2 hover:bg-white rounded-lg hover:text-slate-800"
+                         role="menuitem">Actualidad</a></li>
+      <li role="none"><a href="#experience" class="nav-link p-2 hover:bg-white rounded-lg hover:text-slate-800"
                          role="menuitem">Experiencia</a></li>
-      <li role="none"><a href="#contact" class="p-2 hover:bg-white rounded-lg hover:text-slate-800" role="menuitem">Contacto</a>
-      </li>
+      <li role="none"><a href="#contact" class="nav-link p-2 hover:bg-white rounded-lg hover:text-slate-800"
+                         role="menuitem">Contacto</a></li>
     </ul>
   </nav>
-  <ul id="mobile-menu"
-      class="hidden flex-col md:hidden bg-black text-white border-l border-r border-b border-gray-600 mx-2 w-full absolute top-full left-0 text-center">
-    <li role="none"><a href="#intro" class="block p-4 hover:bg-gray-700" role="menuitem">Inicio</a></li>
-    <li role="none"><a href="#services" class="block p-4 hover:bg-gray-700" role="menuitem">Servicios</a></li>
-    <li role="none"><a href="#clients" class="block p-4 hover:bg-gray-700" role="menuitem">Clientes</a></li>
-    <li role="none"><a href="#articles" class="block p-4 hover:bg-gray-700" role="menuitem">Actualidad</a></li>
-    <li role="none"><a href="#experience" class="block p-4 hover:bg-gray-700" role="menuitem">Experiencia</a></li>
-    <li role="none"><a href="#contact" class="block p-4 hover:bg-gray-700" role="menuitem">Contacto</a></li>
-  </ul>
 </header>
 
-<div id="modal"
-     class="hidden transition ease-in-out bg-black/30 backdrop-blur-lg fixed w-full z-50 flex justify-center h-screen cursor-pointer items-center">
-  <div id="modal-content" class="flex flex-col bg-white rounded-lg drop-shadow shadow-xl">
-    <div id="modal-message"
-         class="hover:animate-pulse p-5 justify-center items-center text-black max-w-3xl">
-    </div>
-    <div class="flex justify-end items-end p-2 text-xs">
-      <div
-        class="bg-gray-200 rounded-lg p-2 transition duration-300 hover:scale-95 hover:translate-x-1 hover:translate-y-1">
-        <button><i class="fas fa-times-circle"></i> Cerrar</button>
-      </div>
-    </div>
+<!-- Menú móvil -->
+<div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-black/90 z-40">
+  <div class="flex flex-col items-center justify-center h-full">
+    <a href="#intro" class="text-white text-2xl py-4">Inicio</a>
+    <a href="#services" class="text-white text-2xl py-4">Servicios</a>
+    <a href="#clients" class="text-white text-2xl py-4">Clientes</a>
+    <a href="#articles" class="text-white text-2xl py-4">Actualidad</a>
+    <a href="#experience" class="text-white text-2xl py-4">Experiencia</a>
+    <a href="#contact" class="text-white text-2xl py-4">Contacto</a>
   </div>
 </div>
 
-<main class="overflow-hidden">
-  <section id="intro"
-           class="dark:bg-opacity-60
-           bg-opacity-30
-           bg-azuloscuro
-           bg-intro text-white h-screen flex items-center justify-center text-center"
-           tabindex="0">
-    <div class="shadow-xl shadow-white bg-white dark:bg-white bg-opacity-60 p-8 backdrop-blur sm:p-12 xl:p-16 rounded-3xl border
-    border-gray-800 max-w-4xl mx-auto text-slate-900 dark:text-white dark:bg-opacity-10">
-      <h1 class="text-6xl font-extrabold">Software Biobío</h1>
-      <p class="mt-6 text-4xl font-light">Soluciones Informáticas</p>
+
+<!-- Sección Hero -->
+<section id="intro" class="animated-gradient min-h-screen flex items-center justify-center px-4">
+  <div class="max-w-5xl mx-auto text-center space-y-8" data-aos="fade-up">
+    <h1 class="text-7xl font-extralight text-white tracking-tight">
+      Transformamos <span class="font-bold">ideas</span> en
+      <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+        <span>experiencias</span> digitales
+                    </span>
+    </h1>
+
+    <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+      Creamos soluciones tecnológicas que impulsan el futuro de tu negocio
+    </p>
+
+    <button
+      class="group relative px-8 py-4 bg-white/10 backdrop-blur overflow-hidden rounded-full transition-all duration-300">
+                    <span class="relative z-10 text-white group-hover:text-black transition-colors duration-300">
+                        Contactar
+                    </span>
+      <div
+        class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+    </button>
+  </div>
+</section>
+<!-- Sección Servicios -->
+<section id="services" class="py-32 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-light text-center mb-24">
+      Nuestras <span class="font-bold">Soluciones</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12">
+      <!-- Servicio 1: Desarrollo de Software -->
+      <div class="tilt-card group" data-aos="fade-up">
+        <div
+          class="bg-white rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-2xl hover:bg-gradient-to-br from-blue-50 to-cyan-50">
+          <div
+            class="h-16 w-16 mb-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-code text-2xl"></i>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">
+            Desarrollo de Software
+          </h3>
+
+          <p class="text-gray-600 mb-6">
+            Creamos soluciones personalizadas utilizando las últimas tecnologías:
+          </p>
+
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Aplicaciones Web Modernas
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              APIs RESTful y GraphQL
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Microservicios Escalables
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Servicio 2: Consultoría Tecnológica -->
+      <div class="tilt-card group" data-aos="fade-up" data-aos-delay="100">
+        <div
+          class="bg-white rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-2xl hover:bg-gradient-to-br from-purple-50 to-blue-50">
+          <div
+            class="h-16 w-16 mb-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-lightbulb text-2xl"></i>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">
+            Consultoría Tecnológica
+          </h3>
+
+          <p class="text-gray-600 mb-6">
+            Asesoramiento experto para optimizar sus procesos:
+          </p>
+
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Arquitectura de Software
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Migración a la Nube
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Optimización de Procesos
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Servicio 3: Soluciones Cloud -->
+      <div class="tilt-card group" data-aos="fade-up" data-aos-delay="200">
+        <div
+          class="bg-white rounded-2xl p-8 shadow-lg transition-all duration-500 hover:shadow-2xl hover:bg-gradient-to-br from-cyan-50 to-blue-50">
+          <div
+            class="h-16 w-16 mb-6 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-cloud text-2xl"></i>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">
+            Soluciones Cloud
+          </h3>
+
+          <p class="text-gray-600 mb-6">
+            Implementación y gestión de servicios en la nube:
+          </p>
+
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              AWS y Azure
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Serverless Computing
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              DevOps y CI/CD
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA (Call to Action) -->
+    <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="300">
       <a href="#contact"
-         class="mt-10 inline-block bg-amber-300 text-black py-3 border border-gray-800
-         px-8 rounded-lg transition ease-in-out hover:scale-95 shadow-xl hover:shadow-md duration-300
-        dark:shadow-lg dark:shadow-white dark:hover:shadow-md dark:hover:shadow-white
-          ">Contáctenos</a>
+         class="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors duration-300 group">
+        Consulta Nuestros Servicios
+        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
+<!-- Sección Artículos con diseño mejorado -->
 
-  <section id="services" class="py-20 bg-gray-900 text-white" tabindex="0">
-    <h2 class="text-4xl font-bold text-center mb-12">Nuestros Servicios</h2>
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2">
-      <!-- Servicio: Desarrollo de Software a Medida -->
+
+<!-- Sección Experiencia mejorada -->
+<section id="experience" class="py-32 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-light text-center mb-24">
+      Más de <span class="font-bold">15 años</span> de Experiencia
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12">
+      <!-- Experiencia 1: Migración Cloud -->
       <div
-        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
-        <i class="fas fa-laptop-code text-4xl text-blue-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Desarrollo de Software a Medida</h3>
-        <p class="mt-2">Desarrollamos soluciones a medida para cubrir las necesidades específicas de cada cliente.</p>
-      </div>
-      <!-- Servicio: Desarrollo de Dispositivos y Sistemas Orientados a Eventos -->
-      <div
-        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
-        <i class="fas fa-cogs text-4xl text-green-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Desarrollo de Sistemas Orientados a Eventos</h3>
-        <p class="mt-2">Diseñamos sistemas que procesan señales en tiempo real, integrando sensores y dispositivos
-          personalizados.</p>
-      </div>
-      <!-- Servicio: Desarrollo de Sistemas y Plataformas Web -->
-      <div
-        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
-        <i class="fas fa-globe text-4xl text-purple-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Desarrollo de Plataformas Web</h3>
-        <p class="mt-2">Desarrollamos sistemas web escalables como dashboards y backoffice, conectados a tus soluciones
-          actuales.</p>
-      </div>
-      <!-- Servicio: Desarrollo de API y Servicios -->
-      <div
-        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
-        <i class="fas fa-server text-4xl text-red-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Desarrollo de API y Servicios</h3>
-        <p class="mt-2">Diseñamos APIs y servicios backend eficientes para integración y funcionalidad avanzada.</p>
+        class="tilt-card bg-gray-50 p-8 rounded-2xl transition-all duration-500 hover:bg-gradient-to-br from-blue-50 to-cyan-50 hover:shadow-xl"
+        data-aos="fade-up">
+        <div class="h-12 w-12 mb-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Migración a Arquitectura Cloud</h3>
+        <p class="text-gray-600">
+          Lideramos exitosamente la migración de arquitecturas monolíticas a soluciones basadas en la nube (AWS, Azure).
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-600">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+            Optimización de costos
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+            Alta disponibilidad
+          </li>
+        </ul>
       </div>
 
-      <!-- Servicio: Análisis de Sistemas y Código Legado -->
+      <!-- Experiencia 2: Sistemas de Telemetría -->
       <div
-        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
-        <i class="fas fa-search text-4xl text-yellow-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Análisis de Sistemas y Código Legado</h3>
-        <p class="mt-2">Analizamos y mejoramos sistemas y código legado para asegurar su integración y evolución.</p>
+        class="tilt-card bg-gray-50 p-8 rounded-2xl transition-all duration-500 hover:bg-gradient-to-br from-green-50 to-blue-50 hover:shadow-xl"
+        data-aos="fade-up" data-aos-delay="100">
+        <div class="h-12 w-12 mb-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Sistemas de Telemetría y Eventos</h3>
+        <p class="text-gray-600">
+          Desarrollo de sistemas de monitoreo en tiempo real y gestión de eventos para industrias.
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-600">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+            IoT Industrial
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+            Análisis predictivo
+          </li>
+        </ul>
       </div>
-      <!-- Servicio: Creación de Agentes de IA Personalizados (Nuevo Servicio) -->
+
+      <!-- Experiencia 3: Innovación Universitaria -->
       <div
-        class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:bg-gray-700 transition transform hover:scale-105">
-        <i class="fas fa-robot text-4xl text-cyan-400 mb-4" aria-hidden="true"></i>
-        <h3 class="text-2xl font-semibold">Creación de Agentes de IA Personalizados</h3>
-        <p class="mt-2">Desarrollamos agentes de inteligencia artificial para automatizar procesos y mejorar la atención
-          al cliente.</p>
+        class="tilt-card bg-gray-50 p-8 rounded-2xl transition-all duration-500 hover:bg-gradient-to-br from-purple-50 to-blue-50 hover:shadow-xl"
+        data-aos="fade-up" data-aos-delay="200">
+        <div class="h-12 w-12 mb-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Innovación en Tecnología Universitaria</h3>
+        <p class="text-gray-600">
+          Modernización de sistemas académicos y administrativos para instituciones educativas.
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-600">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+            Gestión académica
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+            Sistemas de matrícula
+          </li>
+        </ul>
+      </div>
+
+      <!-- Experiencia 4: Microservicios -->
+      <div
+        class="tilt-card bg-gray-50 p-8 rounded-2xl transition-all duration-500 hover:bg-gradient-to-br from-red-50 to-orange-50 hover:shadow-xl"
+        data-aos="fade-up" data-aos-delay="300">
+        <div class="h-12 w-12 mb-6 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Microservicios y API</h3>
+        <p class="text-gray-600">
+          Transformación de arquitecturas monolíticas en microservicios escalables y APIs robustas.
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-600">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-red-500 mr-2"></i>
+            Alta escalabilidad
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-red-500 mr-2"></i>
+            Integración continua
+          </li>
+        </ul>
+      </div>
+
+      <!-- Experiencia 5: Soluciones PyME -->
+      <div
+        class="tilt-card bg-gray-50 p-8 rounded-2xl transition-all duration-500 hover:bg-gradient-to-br from-yellow-50 to-orange-50 hover:shadow-xl"
+        data-aos="fade-up" data-aos-delay="400">
+        <div class="h-12 w-12 mb-6 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
+          <i class="fas fa-store"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Soluciones para PyMEs</h3>
+        <p class="text-gray-600">
+          Desarrollo de sistemas accesibles y efectivos para micro y pequeñas empresas.
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-600">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+            Gestión de inventario
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+            Facturación electrónica
+          </li>
+        </ul>
+      </div>
+
+      <!-- Experiencia 6: Sistemas de Backoffice -->
+      <div
+        class="tilt-card bg-gray-50 p-8 rounded-2xl transition-all duration-500 hover:bg-gradient-to-br from-indigo-50 to-blue-50 hover:shadow-xl"
+        data-aos="fade-up" data-aos-delay="500">
+        <div class="h-12 w-12 mb-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Sistemas de Backoffice</h3>
+        <p class="text-gray-600">
+          Desarrollo de sistemas de backoffice personalizados para la gestión eficiente de operaciones.
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-600">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+            Automatización
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+            Reportería avanzada
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <section id="clients" class="py-20 bg-white text-gray-900" tabindex="0">
-    <h2 class="text-4xl font-bold text-center mb-12">Algunos clientes destacados</h2>
-    <div class="container px-2 sm:mx-auto flex flex-wrap justify-center items-center gap-8">
-      <img src="images/logos/logo_uber-cornershop2.png" alt="Logo Uber" class="h-16">
-      <img src="images/logos/logo_municonce.png" alt="Logo Municipalidad de Concepción" class="h-16">
-      <img src="images/logos/logo_copec.png" alt="Logo Copec" class="h-16">
-      <img src="images/logos/logo_udec.png" alt="Logo Universidad de Concepción" class="h-16">
-      <img src="images/logos/logo_cefop.png" alt="Logo Centro de Óptica y Fotónica" class="h-16">
-      <img src="images/logos/logo_mci.png" alt="Logo MCI Electronics" class="h-16">
-      <img src="images/logos/logo_woodtechms.png" alt="Logo WoodtechMS" class="h-16">
-<!--      <img src="images/logos/logo_ucsc.png" alt="Logo UCSC" class="h-16">-->
+    <!-- CTA -->
+    <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="600">
+      <a href="#contact"
+         class="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors duration-300 group">
+        Conversemos sobre tu Proyecto
+        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="articles" class="py-20 bg-gray-700">
-    <h2 class="text-4xl font-bold text-white text-center mb-12">Actualidad y Tendencia</h2>
-    <div class="grid container m-2 sm:mx-auto md:grid-cols-3 gap-6">
+<section id="articles" class="py-32 bg-gradient-to-br from-slate-900 to-blue-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-light text-center mb-24 text-white">
+      Actualidad y <span class="font-bold">Tendencias</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12">
       <!-- Artículo 1 -->
-      <article class="bg-gray-800 p-6 rounded-lg shadow-md flex flex-col justify-between">
-        <div>
-          <h3 class="text-lg font-bold text-white self-start">Avances en IoT y AI Transforman las Industrias Minera y
-            Forestal en
-            2024</h3>
-        </div>
-        <div>
+      <article
+        class="tilt-card bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+        data-aos="fade-up">
+        <div class="relative">
           <img src="images/articulos/iot-forestal-minera.jpeg"
-               class="w-100 rounded-lg my-4"
-               alt="imagen iot forestal y minera">
+               class="w-full h-48 object-cover"
+               alt="IoT en industria forestal y minera">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <div>
-          <p class="text-gray-200 h-full mt-2">La integración de tecnologías de Inteligencia Artificial (AI) e Internet
-            de
-            las
-            Cosas (IoT) está revolucionando las industrias minera y forestal. Según un artículo de IoT Magazine titulado
-            "Top 10 Mining and Metallurgy Industry Trends with AI and IoT in 2024-2030", estas tecnologías están
-            optimizando la producción, reduciendo costos y mejorando la seguridad y sostenibilidad ambiental. La
-            implementación de sensores inteligentes y sistemas automatizados permite un monitoreo en tiempo real y toma
-            de
-            decisiones más informadas.</p>
-        </div>
-        <div class="text-right self-end">
+
+        <div class="p-8">
+          <h3 class="text-xl font-semibold text-white mb-4">
+            Avances en IoT y AI Transforman las Industrias Minera y Forestal en 2024
+          </h3>
+          <p class="text-gray-300 mb-6">
+            La integración de tecnologías de Inteligencia Artificial (AI) e Internet de las Cosas (IoT) está
+            revolucionando las industrias minera y forestal.
+          </p>
           <a href="https://iotworldmagazine.com/2024/06/11/2329/"
              target="_blank"
-             class="mt-4 self-end text-yellow-300 text-xs rounded p-1 transform duration-300 hover:scale-105">[Leer
-            más]</a>
+             class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+            Leer más
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
         </div>
       </article>
+
       <!-- Artículo 2 -->
-      <article class="bg-gray-800 p-6 rounded-lg shadow-md  flex flex-col justify-between">
-        <div>
-          <h3 class="text-lg font-bold text-white">Aceleración de la Migración a la Nube Impulsa la Transformación
-            Digital
-            en 2024</h3>
-        </div>
-        <div>
+      <article
+        class="tilt-card bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="100">
+        <div class="relative">
           <img src="images/articulos/migracion-nube.jpeg"
-               class="w-100 rounded-lg my-4"
-               alt="imagen iot forestal y minera">
+               class="w-full h-48 object-cover"
+               alt="Migración a la nube">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <div>
-          <p class="text-gray-200 h-full mt-2">En 2024, las empresas continúan acelerando su migración hacia la nube
-            para
-            impulsar la transformación digital y mejorar los servicios a los clientes. Según un artículo publicado en
-            Forbes titulado "Cloud Computing In 2024: Unveiling Transformations And Opportunities", la computación en la
-            nube está experimentando transformaciones significativas, permitiendo a las organizaciones adaptarse
-            rápidamente a las necesidades del mercado, reducir costos y mejorar la escalabilidad y flexibilidad de sus
-            operaciones.</p>
-        </div>
-        <div class="text-right self-end">
+
+        <div class="p-8">
+          <h3 class="text-xl font-semibold text-white mb-4">
+            Aceleración de la Migración a la Nube Impulsa la Transformación Digital
+          </h3>
+          <p class="text-gray-300 mb-6">
+            En 2024, las empresas continúan acelerando su migración hacia la nube para impulsar la transformación
+            digital.
+          </p>
           <a
             href="https://www.forbes.com/sites/emilsayegh/2024/01/02/cloud-computing-in-2024-unveiling-transformations-and-opportunities/"
             target="_blank"
-            class="mt-4 text-yellow-300 text-xs rounded p-1 transform duration-300 hover:scale-105">[Leer más]</a>
+            class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+            Leer más
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
         </div>
       </article>
+
       <!-- Artículo 3 -->
-      <article class="bg-gray-800 p-6 rounded-lg shadow-md  flex flex-col justify-between">
-        <div>
-          <h3 class="text-lg font-bold text-white">Tendencias en Microservicios y APIs Impulsan la Escalabilidad
-            Empresarial en 2024</h3>
-        </div>
-        <div>
+      <article
+        class="tilt-card bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="200">
+        <div class="relative">
           <img src="images/articulos/tendencia-microservicios.jpeg"
-               class="w-100 rounded-lg my-4"
-               alt="imagen iot forestal y minera">
+               class="w-full h-48 object-cover"
+               alt="Tendencias en microservicios">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <div>
-          <p class="text-gray-200 h-full mt-2">La adopción de microservicios y APIs continúa creciendo en 2024,
-            permitiendo a
-            las empresas desarrollar aplicaciones más escalables y flexibles. Un artículo de Forbes titulado "The 10
-            Biggest Cloud Computing Trends In 2024 Everyone Must Be Ready For Now" destaca que las arquitecturas de
-            microservicios facilitan la implementación de nuevas funcionalidades y mejoran la capacidad de respuesta a
-            las
-            demandas del mercado. Esto permite una innovación más rápida y eficiente en el desarrollo de software.</p>
-        </div>
-        <div class="text-right self-end">
+
+        <div class="p-8">
+          <h3 class="text-xl font-semibold text-white mb-4">
+            Tendencias en Microservicios y APIs Impulsan la Escalabilidad Empresarial
+          </h3>
+          <p class="text-gray-300 mb-6">
+            La adopción de microservicios y APIs continúa creciendo, permitiendo desarrollar aplicaciones más
+            escalables.
+          </p>
           <a
             href="https://www.forbes.com/sites/bernardmarr/2023/10/09/the-10-biggest-cloud-computing-trends-in-2024-everyone-must-be-ready-for-now/"
             target="_blank"
-            class="mt-4 text-yellow-300 text-xs rounded p-1 transform duration-300 hover:scale-105">[Leer más]</a>
+            class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+            Leer más
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
         </div>
       </article>
     </div>
-  </section>
+  </div>
+</section>
+<section id="clients" class="py-32 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-light text-center mb-16">
+      Algunos clientes <span class="font-bold">destacados</span>
+    </h2>
 
+    <div class="flex flex-wrap justify-center items-center gap-16">
+      <img src="images/logos/logo_uber-cornershop2.png"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100"
+           alt="Logo Uber">
 
-  <section id="experience" class="py-20 bg-gray-200 dark:bg-gray-800" tabindex="0">
-    <h2 class="text-4xl font-bold text-center mb-12 dark:text-gray-200">>15 años Experiencia</h2>
-    <div class="container p-2 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div
-        class="bg-gray-100 hover:bg-white dark:bg-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-gray-400  transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Migración a Arquitectura Cloud</h3>
-        <p class="mt-2">Hemos liderado exitosamente la migración de arquitecturas monolíticas a soluciones basadas en la
-          nube (AWS), implementando nuevas funcionalidades y mejorando la integración para grandes cadenas de
-          retail.</p>
-      </div>
-      <div
-        class="bg-gray-100 hover:bg-white dark:bg-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-gray-400  transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Desarrollo de Sistemas de Backoffice</h3>
-        <p class="mt-2">Desarrollamos sistemas de backoffice personalizados para la gestión eficiente de productos y
-          operaciones en el sector retail, optimizando los procesos y mejorando la productividad.</p>
-      </div>
-      <div
-        class="bg-gray-100 hover:bg-white dark:bg-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-gray-400  transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Microservicios y API</h3>
-        <p class="mt-2">Transformamos arquitecturas monolíticas en microservicios escalables, desarrollando APIs
-          robustas y eficientes que mejoran la capacidad de respuesta y la flexibilidad del sistema.</p>
-      </div>
-      <div
-        class="bg-gray-100 hover:bg-white dark:bg-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-gray-400  transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Sistemas de Telemetría y Eventos</h3>
-        <p class="mt-2">Creamos sistemas de telemetría de baja latencia para la industria forestal y minera, mejorando
-          la seguridad y productividad mediante soluciones tecnológicas avanzadas.</p>
-      </div>
-      <div
-        class="bg-gray-100 hover:bg-white dark:bg-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-gray-400  transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Innovación en Tecnología Universitaria</h3>
-        <p class="mt-2">Colaboramos con universidades en el desarrollo de proyectos tecnológicos avanzados,
-          implementando sistemas de telemetría y eventos para dispositivos de última generación.</p>
-      </div>
-      <div
-        class="bg-gray-100 hover:bg-white dark:bg-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-gray-400  transition transform hover:scale-105">
-        <h3 class="text-2xl font-semibold">Soluciones para Micro y Pequeñas Empresas</h3>
-        <p class="mt-2">Ofrecemos soluciones de software a medida para micro y pequeñas empresas, ayudándolas a
-          optimizar sus procesos y mejorar su eficiencia operativa.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="py-20 bg-gradient-to-t from-azulmasoscuro to-azuloscuro text-white" tabindex="0">
-    <h2 class="text-4xl font-bold text-center mb-12">Contáctenos</h2>
-    <div class="container mx-auto">
-      <p class="text-center mb-8">Si está interesado en nuestros servicios no dude en
-        contactarnos con el siguiente formulario o envíandonos un correo electrónico a <a
-          href="mailto:contacto@softwarebiobio.com"
-          class="text-yellow-300 hover:underline">contacto@softwarebiobio.com</a></p>
-      <form name="softwarebiobio-contact-form" id="contact-form" method="POST" data-netlify="true"
-            class="max-w-lg mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
-        <div class="mb-4">
-          <label for="name" class="block text-lg font-semibold mb-2">Nombre:</label>
-          <input type="text" id="name" name="name"
-                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black"
-                 required aria-required="true">
-        </div>
-        <div class="mb-4">
-          <label for="email" class="block text-lg font-semibold mb-2">Correo electrónico:</label>
-          <input type="email" id="email" name="email"
-                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black"
-                 required aria-required="true">
-        </div>
-        <div class="mb-4">
-          <label for="phone" class="block text-lg font-semibold mb-2">Teléfono:</label>
-          <input type="tel" id="phone" name="phone"
-                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black"
-                 required aria-required="true">
-        </div>
-        <div class="mb-4">
-          <label for="message" class="block text-lg font-semibold mb-2">Mensaje:</label>
-          <textarea id="message" name="message" rows="4"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black"
-                    required aria-required="true"></textarea>
-        </div>
-        <div class="flex flex-rows space-x-4">
-          <button type="reset"
-                  class="w-full bg-gray-100 text-black py-2 rounded-lg hover:bg-gray-300 transition transform hover:scale-95">
-            Limpiar
-          </button>
-          <button id="submit-button" type="submit"
-                  class="w-full bg-yellow-500 text-black py-2 rounded-lg hover:bg-yellow-600 transition transform hover:scale-95">
-            Enviar
-          </button>
-        </div>
-      </form>
+      <img src="images/logos/logo_municonce.png" alt="Logo Municipalidad de Concepción"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100"">
+      <img src="images/logos/logo_copec.png" alt="Logo Copec"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100">
+      <img src="images/logos/logo_udec.png" alt="Logo Universidad de Concepción"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100">
+      <img src="images/logos/logo_cefop.png" alt="Logo Centro de Óptica y Fotónica"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100">
+      <img src="images/logos/logo_mci.png" alt="Logo MCI Electronics"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100">
+      <img src="images/logos/logo_woodtechms.png" alt="Logo WoodtechMS"
+           class="h-12 opacity-50 transition-opacity duration-300 hover:opacity-100">
 
     </div>
-    <script>
-      document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  </div>
+</section>
 
-        e.preventDefault()
-        formData = new FormData(e.target)
-        let msg_error = 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contacto@softwarebiobio.com como alternativa.'
-        let msg_success = 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
+<!-- Sección de Contacto -->
+<section id="contact" class="py-32 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-light text-center mb-24">
+      Conversemos sobre su <span class="font-bold">Proyecto</span>
+    </h2>
 
-        const sbtn = document.getElementById('submit-button')
-        sbtn.classList.toggle('disabled')
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Formulario de contacto -->
+      <div class="bg-white/10 backdrop-blur-lg p-8 rounded-2xl" data-aos="fade-right">
+        <form id="contact-form" class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-2">Nombre</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   required
+                   class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/20 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-colors"
+                   placeholder="Tu nombre completo">
+          </div>
 
-        try {
-          const response = await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-          })
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   required
+                   class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/20 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-colors"
+                   placeholder="tu@email.com">
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium mb-2">Mensaje</label>
+            <textarea id="message"
+                      name="message"
+                      required
+                      rows="4"
+                      class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/20 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-colors"
+                      placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+          </div>
+
+          <button type="submit"
+                  id="submit-button"
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center">
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="space-y-8" data-aos="fade-left">
+        <div class="bg-white/10 backdrop-blur-lg p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Ubicación</h3>
+          <p class="flex items-center">
+            <i class="fas fa-map-marker-alt mr-4 text-blue-400"></i>
+            Concepción, Región del Biobío, Chile
+          </p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-lg p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Contacto Directo</h3>
+          <p class="flex items-center mb-4">
+            <i class="fas fa-envelope mr-4 text-blue-400"></i>
+            contacto@softwarebiobio.com
+          </p>
+          <p class="flex items-center">
+            <i class="fas fa-clock mr-4 text-blue-400"></i>
+            Lunes a Viernes: 9:00 - 18:00
+          </p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-lg p-8 rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Redes Sociales</h3>
+          <div class="flex space-x-4">
+            <a href="https://linkedin.com/company/softwarebiobio"
+               target="_blank"
+               class="hover:text-blue-400 transition-colors duration-300">
+              <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="https://github.com/softwarebiobio"
+               target="_blank"
+               class="hover:text-gray-400 transition-colors duration-300">
+              <i class="fab fa-github text-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
-          if (response.ok) {
-            document.getElementById('contact-form').reset()
-            response_msg = msg_success
-          } else {
-            response_msg = msg_error
-          }
+<!-- Modal de confirmación -->
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+  <div class="bg-white p-8 rounded-2xl max-w-md mx-4">
+    <p id="modal-message" class="text-center text-lg mb-6"></p>
+    <button onclick="this.parentElement.parentElement.classList.add('hidden')"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+      Cerrar
+    </button>
+  </div>
+</div>
 
-        } catch (error) {
-          console.error('Error al enviar el mensaje: ', error)
-          response_msg = msg_error
-        }
+<!-- Footer -->
+<footer class="bg-slate-900 text-white py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-12">
+      <!-- Columna 1: Logo y descripción -->
+      <div class="space-y-4">
+        <h3 class="text-2xl font-bold">Software BioBio</h3>
+        <p class="text-gray-400">
+          Transformando ideas en soluciones tecnológicas innovadoras desde el corazón de la región del Biobío.
+        </p>
+      </div>
 
-        document.getElementById('modal-message').textContent = response_msg
-        document.getElementById('modal').classList.toggle('hidden')
-        sbtn.classList.toggle('disabled')
+      <!-- Columna 2: Enlaces rápidos -->
+      <div class="space-y-4">
+        <h4 class="text-xl font-semibold">Enlaces Rápidos</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Servicios</a></li>
+          <li><a href="#experience" class="text-gray-400 hover:text-white transition-colors">Experiencia</a></li>
+          <li><a href="#articles" class="text-gray-400 hover:text-white transition-colors">Actualidad</a></li>
+          <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
 
-      })
+      <!-- Columna 3: Newsletter -->
+      <div class="space-y-4">
+        <h4 class="text-xl font-semibold">Newsletter</h4>
+        <p class="text-gray-400">Suscríbete para recibir noticias y actualizaciones.</p>
+        <form class="flex gap-2">
+          <input type="email"
+                 placeholder="tu@email.com"
+                 class="flex-1 px-4 py-2 rounded-lg bg-white/5 border border-white/20 focus:border-blue-400 focus:ring-2 focus:ring-blue-400">
+          <button type="submit"
+                  class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors">
+            Suscribir
+          </button>
+        </form>
+      </div>
+    </div>
 
-      document.getElementById('modal').addEventListener('click', function(e) {
-        document.getElementById('modal').classList.toggle('hidden')
-      })
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-800 my-8"></div>
 
-      document.getElementById('hamburger').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden')
-      })
-    </script>
-  </section>
-
-
-</main>
-<footer class="bg-slate-900 text-white py-4 text-center">
-  <p>Concepción. Región del Biobío. Chile.</p>
-  <p>&copy; 2024 Software BioBio. Todos los derechos reservados.</p>
+    <!-- Copyright y créditos -->
+    <div class="text-center text-gray-400">
+      <p>&copy; 2024 Software BioBio. Todos los derechos reservados.</p>
+      <p class="mt-2">
+        Diseñado y desarrollado con
+        <i class="fas fa-heart text-red-500"></i>
+        en Concepción, Chile
+      </p>
+    </div>
+  </div>
 </footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  // Inicializar AOS (Animate On Scroll)
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100,
+    easing: 'ease-out-cubic'
+  })
+
+  // Remover el loader cuando la página esté completamente cargada
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader')
+    loader.classList.add('opacity-0')
+    setTimeout(() => {
+      loader.style.display = 'none'
+    }, 500)
+  })
+
+  // Cursor personalizado
+  document.addEventListener('mousemove', (e) => {
+    const cursor = document.querySelector('.custom-cursor')
+    cursor.style.left = e.clientX + 'px'
+    cursor.style.top = e.clientY + 'px'
+  })
+
+  document.addEventListener('mousedown', () => {
+    document.querySelector('.custom-cursor').classList.add('hover')
+  })
+
+  document.addEventListener('mouseup', () => {
+    document.querySelector('.custom-cursor').classList.remove('hover')
+  })
+
+  // Efecto de hover en links y botones
+  const interactiveElements = document.querySelectorAll('a, button')
+  interactiveElements.forEach(elem => {
+    elem.addEventListener('mouseenter', () => {
+      document.querySelector('.custom-cursor').classList.add('hover')
+    })
+    elem.addEventListener('mouseleave', () => {
+      document.querySelector('.custom-cursor').classList.remove('hover')
+    })
+  })
+
+  // Manejador del formulario de contacto
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const submitButton = document.getElementById('submit-button')
+    const modal = document.getElementById('modal')
+    const modalMessage = document.getElementById('modal-message')
+
+    const messages = {
+      error: 'Hubo un error al enviar su mensaje. Por favor envíenos un email a contacto@softwarebiobio.com como alternativa.',
+      success: 'Gracias. Hemos recibido su mensaje y contactaremos con usted lo antes posible.'
+    }
+
+    try {
+      submitButton.disabled = true
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...'
+
+      // Simulación de envío de formulario (reemplazar con tu endpoint real)
+      const response = await fetch('https://api.softwarebiobio.com/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formData))
+      })
+
+      if (response.ok) {
+        e.target.reset()
+        modalMessage.textContent = messages.success
+        modalMessage.className = 'text-green-600'
+      } else {
+        throw new Error('Error en la respuesta del servidor')
+      }
+    } catch (error) {
+      console.error('Error al enviar el mensaje:', error)
+      modalMessage.textContent = messages.error
+      modalMessage.className = 'text-red-600'
+    } finally {
+      submitButton.disabled = false
+      submitButton.innerHTML = 'Enviar Mensaje'
+      modal.classList.remove('hidden')
+    }
+  })
+
+  // Manejador del menú móvil
+  const hamburger = document.getElementById('hamburger')
+  const mobileMenu = document.getElementById('mobile-menu')
+
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden')
+    this.classList.toggle('active')
+  })
+
+  // Cerrar menú móvil al hacer click en un enlace
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden')
+      hamburger.classList.remove('active')
+    })
+  })
+
+  // Smooth scroll para enlaces internos
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault()
+      const target = document.querySelector(this.getAttribute('href'))
+      if (target) {
+        const headerOffset = 80
+        const elementPosition = target.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    })
+  })
+
+  // Observador de intersección para animaciones de scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in')
+        observer.unobserve(entry.target)
+      }
+    })
+  }, {
+    threshold: 0.1
+  })
+
+  document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+    observer.observe(element)
+  })
+
+  // Validación de formulario de newsletter
+  const newsletterForm = document.querySelector('footer form')
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const emailInput = newsletterForm.querySelector('input[type="email"]')
+      const submitButton = newsletterForm.querySelector('button')
+
+      try {
+        submitButton.disabled = true
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+        // Simulación de suscripción (reemplazar con tu endpoint real)
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        emailInput.value = ''
+        alert('¡Gracias por suscribirte a nuestro newsletter!')
+      } catch (error) {
+        console.error('Error en la suscripción:', error)
+        alert('Hubo un error al procesar tu suscripción. Por favor, intenta nuevamente.')
+      } finally {
+        submitButton.disabled = false
+        submitButton.innerHTML = 'Suscribir'
+      }
+    })
+  }
+
+  // Contador de visitas
+  const script = document.createElement('script')
+  script.src = '//gc.zgo.at/count.js'
+  script.async = true
+  script.setAttribute('data-goatcounter', 'https://softwarebiobio.goatcounter.com/count')
+  document.body.appendChild(script)
+</script>
+
 </body>
 </html>
