@@ -155,14 +155,16 @@
       Creamos soluciones tecnológicas que impulsan el futuro de tu negocio
     </p>
 
-    <button
-      class="group relative px-8 py-4 bg-white/10 backdrop-blur overflow-hidden rounded-full transition-all duration-300">
+    <a href="#contact">
+      <button
+        class="group relative px-8 py-4 bg-white/10 backdrop-blur overflow-hidden rounded-full transition-all duration-300">
                     <span class="relative z-10 text-white group-hover:text-black transition-colors duration-300">
                         Contactar
                     </span>
-      <div
-        class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-    </button>
+        <div
+          class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+      </button>
+    </a>
   </div>
 </section>
 
@@ -620,7 +622,7 @@
     try {
       submitButton.disabled = true
       submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...'
-      
+
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
