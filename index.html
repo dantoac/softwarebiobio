@@ -516,7 +516,7 @@
   <div class="bg-white p-8 rounded-2xl max-w-md mx-4">
     <p id="modal-message" class="text-center text-xl p-2 mb-12"></p>
     <button onclick="this.parentElement.parentElement.classList.add('hidden')"
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300">
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white mt-8 py-2 px-4 rounded-lg transition-all duration-300 shadow-2xl hover:shadow-md">
       Cerrar
     </button>
   </div>
@@ -632,9 +632,9 @@
       if (response.ok) {
         e.target.reset()
         modalMessage.textContent = messages.success
-        modalMessage.className = 'text-blue-600'
+        modalMessage.className = ''
       } else {
-        throw new Error('Error en la respuesta del servidor')
+        throw new Error('Error en la respuesta del servidor. Puede enviarnos un email a contacto@softwarebiobio.com')
       }
     } catch (error) {
       console.error('Error al enviar el mensaje:', error)
