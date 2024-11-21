@@ -512,11 +512,11 @@
 
 
 <!-- Modal de confirmación -->
-<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 transition-all">
   <div class="bg-white p-8 rounded-2xl max-w-md mx-4">
-    <p id="modal-message" class="text-center text-xl p-2 mb-6"></p>
+    <p id="modal-message" class="text-center text-xl p-2 mb-12"></p>
     <button onclick="this.parentElement.parentElement.classList.add('hidden')"
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300">
       Cerrar
     </button>
   </div>
@@ -632,14 +632,14 @@
       if (response.ok) {
         e.target.reset()
         modalMessage.textContent = messages.success
-        modalMessage.className = 'text-green-600'
+        modalMessage.className = 'text-blue-600'
       } else {
         throw new Error('Error en la respuesta del servidor')
       }
     } catch (error) {
       console.error('Error al enviar el mensaje:', error)
       modalMessage.textContent = messages.error
-      modalMessage.className = 'text-red-600'
+      modalMessage.className = 'text-amber-600'
     } finally {
       submitButton.disabled = false
       submitButton.innerHTML = 'Enviar Mensaje'
