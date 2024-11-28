@@ -6,7 +6,7 @@
   <title>Software BioBio - Consultoría y Desarrollo de Software</title>
   <meta name="description"
         content="Software BioBio ofrece servicios de consultoría y desarrollo de software, aplicaciones web y móviles desde Concepción en la región de Biobío, Chile.">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/stylesheet.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
@@ -145,19 +145,18 @@
 <section id="intro" class="animated-gradient min-h-screen flex items-center justify-center px-4">
   <div class="max-w-5xl mx-auto text-center space-y-8" data-aos="fade-up">
     <h1 class="text-5xl md:text-7xl font-extralight text-white tracking-tight">
-      Transformamos <span class="font-bold">ideas</span> en
+      <span class="font-bold">Soluciones</span>
       <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-        <span>experiencias</span> digitales prácticas
-                    </span>
+        <span>Informáticas</span>.
+    </span>
     </h1>
 
     <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-      Creamos soluciones tecnológicas que impulsan el futuro de tu negocio
+      Simple. Elegante. Efectivo.
     </p>
-
     <a href="#contact">
       <button
-        class="group relative px-8 py-4 bg-white/10 backdrop-blur overflow-hidden rounded-full transition-all duration-300">
+        class="mt-4 group relative px-8 py-4 bg-white/10 backdrop-blur overflow-hidden rounded-full transition-all duration-300">
                     <span class="relative z-10 text-white group-hover:text-black transition-colors duration-300">
                         Contactar
                     </span>
@@ -512,7 +511,8 @@
 
 
 <!-- Modal de confirmación -->
-<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 transition-all">
+<div id="modal"
+     class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 transition-all">
   <div class="bg-white p-8 rounded-2xl max-w-md mx-4">
     <p id="modal-message" class="text-center text-xl p-2 mb-12"></p>
     <button onclick="this.parentElement.parentElement.classList.add('hidden')"
