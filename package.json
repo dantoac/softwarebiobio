@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "tailwindcss": "^3.4.15"
+    "tailwindcss": "^4.0.0-beta.6"
   },
   "scripts": {
     "tailwindcss": "npx tailwindcss -c tailwind.config.js -o css/stylesheet.css -w"
